@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyMate AI - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+
+    <aside class="sidebar">
+        <h2 class="logo">StudyMate <span>AI.</span></h2>
+        <p class="menu-title">MENU</p>
+        <a href="#dashboard" class="nav-link active">🏠 Dashboard</a>
+        <a href="#subjects" class="nav-link">📚 My Subjects</a>
+        <a href="#goals" class="nav-link">🎯 Daily Goals</a>
+        <div class="sidebar-note">
+            <span>💡</span>
+            <h3>Small steps, big success!</h3>
+            <p>Study a little every day.</p>
+        </div>
+    </aside>
+
+    <main class="main-content" id="dashboard">
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">YOUR LEARNING SPACE</p>
+                <h1>My Dashboard 👋</h1>
+                <p class="subtitle">Learn something new today.</p>
+            </div>
+            <div class="profile">
+                <div class="avatar">S</div>
+                <div><strong>Student</strong><p>Keep learning!</p></div>
+            </div>
+        </header>
+
+        <section class="welcome-card">
+            <div>
+                <p class="welcome-label">YOUR DAILY REMINDER</p>
+                <h2>Every expert was once a beginner.</h2>
+                <p>Choose a subject and take one step forward.</p>
+                <a href="#subjects" class="primary-button">Explore Subjects →</a>
+            </div>
+            <div class="welcome-icon">🚀</div>
+        </section>
+
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon purple">📚</div>
+                <p>Total Subjects</p><h2>03</h2><span>Ready to learn</span>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon green">🎯</div>
+                <p>Daily Goals</p><h2 id="goalCount">0/3</h2><span>Goals completed</span>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon orange">⚡</div>
+                <p>Daily Progress</p><h2 id="progressNumber">0%</h2><span>Keep going!</span>
+            </div>
+        </section>
+
+        <section class="section" id="subjects">
+            <div class="section-heading">
+                <div><p class="eyebrow">YOUR COURSES</p><h2>My Subjects</h2></div>
+                <span class="small-label">3 subjects</span>
+            </div>
+
+            <div class="subjects-grid">
+                <article class="subject-card">
+                    <div class="subject-top">
+                        <div class="subject-icon c-icon">C</div>
+                        <span class="level">Beginner</span>
+                    </div>
+                    <h3>C Programming</h3>
+                    <p>Learn variables, input and output in C.</p>
+                    <div class="subject-footer">
+                        <span>Open lesson</span>
+                        <button class="subject-button" data-subject="C Programming">→</button>
+                    </div>
+                </article>
+
+                <article class="subject-card">
+                    <div class="subject-top">
+                        <div class="subject-icon cpp-icon">C++</div>
+                        <span class="level">Beginner</span>
+                    </div>
+                    <h3>C++ Programming</h3>
+                    <p>Understand classes and objects in OOP.</p>
+                    <div class="subject-footer">
+                        <span>Open lesson</span>
+                        <button class="subject-button" data-subject="C++ Programming">→</button>
+                    </div>
+                </article>
+
+                <article class="subject-card">
+                    <div class="subject-top">
+                        <div class="subject-icon js-icon">JS</div>
+                        <span class="level">Beginner</span>
+                    </div>
+                    <h3>JavaScript</h3>
+                    <p>Make webpages interactive with JavaScript.</p>
+                    <div class="subject-footer">
+                        <span>Open lesson</span>
+                        <button class="subject-button" data-subject="JavaScript">→</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Lesson area: hidden until a subject is selected -->
+        <section class="lesson-panel" id="lessonPanel" hidden>
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">YOUR LESSON</p>
+                    <h2 id="lessonTitle">Lesson title</h2>
+                </div>
+                <button class="back-button" id="backButton">← Dashboard</button>
+            </div>
+
+            <div class="lesson-card">
+                <span class="level">Beginner lesson</span>
+                <h3 id="lessonHeading"></h3>
+                <p id="lessonExplanation"></p>
+                <h3>Code example</h3>
+                <pre><code id="lessonCode"></code></pre>
+                <p id="lessonNote" class="lesson-note"></p>
+            </div>
+
+            <div class="quiz-card">
+                <p class="eyebrow">CHECK YOUR UNDERSTANDING</p>
+                <h3 id="quizQuestion">Quiz question</h3>
+                <div id="quizOptions" class="quiz-options"></div>
+                <p id="quizFeedback" class="quiz-feedback" aria-live="polite"></p>
+                <button id="checkAnswer" class="primary-button quiz-submit">Check Answer</button>
+                <button id="nextQuestion" class="back-button" hidden>Next Question →</button>
+                <p id="quizScore" class="quiz-score"></p>
+            </div>
+        </section>
+
+        <section class="section goals-section" id="goals">
+            <div class="section-heading">
+                <div><p class="eyebrow">BUILD YOUR HABIT</p><h2>Today's Study Goals</h2></div>
+                <span class="goal-badge">Daily plan</span>
+            </div>
+
+            <div class="goals-card">
+                <div class="goals-top">
+                    <div>
+                        <h3>My daily targets</h3>
+                        <p>Complete each task to improve your progress.</p>
+                    </div>
+                    <span class="target-icon">🏆</span>
+                </div>
+
+                <div class="progress-track">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <p class="progress-caption" id="progressCaption">You have completed 0 out of 3 goals.</p>
+
+                <label class="goal-item">
+                    <input type="checkbox" class="goal-checkbox" data-goal="0">
+                    <span class="custom-check"></span>
+                    <span class="goal-text"><strong>Study C Programming</strong><small>Practice basics for 30 minutes</small></span>
+                    <span class="goal-time">30 min</span>
+                </label>
+
+                <label class="goal-item">
+                    <input type="checkbox" class="goal-checkbox" data-goal="1">
+                    <span class="custom-check"></span>
+                    <span class="goal-text"><strong>Revise C++ concepts</strong><small>Understand class and object</small></span>
+                    <span class="goal-time">20 min</span>
+                </label>
+
+                <label class="goal-item">
+                    <input type="checkbox" class="goal-checkbox" data-goal="2">
+                    <span class="custom-check"></span>
+                    <span class="goal-text"><strong>Practice JavaScript</strong><small>Write a small program</small></span>
+                    <span class="goal-time">20 min</span>
+                </label>
+            </div>
+        </section>
+<section class="section tutor-section" id="ai-tutor">
+    <div class="section-heading">
+        <div>
+            <p class="eyebrow">YOUR PERSONAL STUDY ASSISTANT</p>
+            <h2>AI Study Tutor 🤖</h2>
+            <p class="subtitle">Ask a question and learn step by step.</p>
+        </div>
+        <button type="button" class="back-button" id="clearChat">
+            Clear Chat
+        </button>
+    </div>
+
+    <div class="tutor-card">
+        <div class="tutor-header">
+            <div class="tutor-avatar">🤖</div>
+            <div>
+                <h3>StudyMate Assistant</h3>
+                <p><span class="status-dot"></span> Demo mode · Ready to help</p>
+            </div>
+        </div>
+
+        <div class="chat-messages" id="chatMessages"
+             aria-live="polite" aria-label="Chat messages">
+            <div class="chat-message tutor-message">
+                <div class="message-avatar">🤖</div>
+                <div class="message-content">
+                    <strong>StudyMate AI</strong>
+                    <p>Hi! 👋 I'm your study companion. Ask me about C, C++,
+                    JavaScript, or basic computer science. Let's learn together!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-suggestions">
+            <button type="button" class="suggestion-button"
+                    data-prompt="What is programming?">
+                What is programming?
+            </button>
+            <button type="button" class="suggestion-button"
+                    data-prompt="Explain variables in simple English.">
+                Explain variables
+            </button>
+            <button type="button" class="suggestion-button"
+                    data-prompt="How should I start learning C?">
+                Learn C
+            </button>
+        </div>
+
+        <form class="chat-form" id="chatForm">
+            <label for="chatInput" class="sr-only">Ask your question</label>
+            <textarea id="chatInput" rows="2" maxlength="1000"
+                placeholder="Type your study question here..."
+                required></textarea>
+            <button type="submit" id="sendButton" class="send-button">
+                Send ↑
+            </button>
+        </form>
+
+        <p class="chat-disclaimer">
+            Demo mode: replies are sample explanations, not live AI answers.
+        </p>
+    </div>
+</section>
+        <footer><p>Made with 💙 for your learning journey | StudyMate AI</p></footer>
+    </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
